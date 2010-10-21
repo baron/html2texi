@@ -1,0 +1,32 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+/* acconfig.h: bits we need to tell autoconf and friends about */ /* JMJ */
+/* See the file COPYING for copying conditions */
+
+/* to pick up strdup and strndup prototypes */
+#define __USE_GNU
+
+
+/* Define to empty if the keyword does not work.  */
+#undef const
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if lex declares yytext as a char * by default, not a char[].  */
+#undef YYTEXT_POINTER
+
+/* Define if you have the strdup function.  */
+#undef HAVE_STRDUP
+
+/* Define if you have the strerror function.  */
+#undef HAVE_STRERROR
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+

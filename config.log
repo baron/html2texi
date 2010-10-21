@@ -1,0 +1,31 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:559: checking for a BSD compatible install
+configure:612: checking whether build environment is sane
+configure:669: checking whether make sets ${MAKE}
+configure:716: checking for working aclocal
+configure:729: checking for working autoconf
+configure:742: checking for working automake
+configure:755: checking for working autoheader
+configure:768: checking for working makeinfo
+configure:794: checking for a BSD compatible install
+configure:847: checking whether ln -s works
+configure:872: checking for gawk
+configure:904: checking for gcc
+configure:1017: checking whether the C compiler (gcc  ) works
+configure:1033: gcc -o conftest    conftest.c  1>&5
+configure:1059: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:1064: checking whether we are using GNU C
+configure:1092: checking whether gcc accepts -g
+configure:1124: checking how to run the C preprocessor
+configure:1209: checking for flex
+configure:1242: checking for flex
+configure:1276: checking for yywrap in -lfl
+configure:1318: checking lex output file root
+configure:1339: checking whether yytext is a pointer
+configure:1382: checking for ANSI C header files
+configure:1489: checking for unistd.h
+configure:1527: checking for working const
+configure:1605: checking for strdup
+configure:1605: checking for strerror

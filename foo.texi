@@ -1,0 +1,42 @@
+@setfilename funky.info
+@settitle W. L. Estes
+
+
+
+@chapter W. L. Estes
+
+
+@uref{guitar/index.html,Classical Guitar}
+@uref{projects/software/index.html,Software}
+@uref{projects/writings/index.html,Writings}
+@uref{projects/index.html,Miscellaneous Projects}
+@uref{sara-smiles.html,sara-smiles}
+@uref{images/index.html,Graphics Corner}
+@uref{tutor.html,Tutoring Services}
+@uref{linkfarm.html,Link Farm}
+@uref{comments.html,Comments}
+@uref{projects/writings/admin.html,Site Administration}
+@uref{whatsnew.html,What's new}
+
+
+
+Welcome to my little bit of the world. The above menu will get you
+to everything officially sanctioned. But if you want some more
+explanatory guidance...
+
+In my spare time I sometimes write
+@uref{projects/software/index.html,software}. In other bits of my
+spare time, I @uref{projects/writings/index.html,write} the
+occasional thought, story or essay. For a while, I collected
+@uref{guitar/index.html,reviews} of classical guitar sheet
+music. And then sometimes I do mildly random things like the
+@uref{sara-smiles.html,sara-smiles} page. Still being a novice at
+all of this, I'm keeping a record of what, how and why I do to
+@uref{projects/admin.html, this site. For the graphically inclined,
+I have a few @uref{images/index.html,pictures}. There is a big
+list of @uref{linkfarm.html,other sites} I want to keep track
+of as well. Here is also a list of @uref{.files.html,everything}
+I'm willing to admit responsibility for. But if you want a more
+organized index, have a look at the @uref{sitemap.html,site map}.
+
+

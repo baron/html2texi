@@ -1,0 +1,83 @@
+1999-09-08  W. L. Estes  <will@fumblers.org>
+
+	release 0.1
+
+	* html2texi.lsm.in: new file
+	* Makefile.am(AUTOMAKE_OPTIONS): drop no-texinfo.tex
+
+1999-09-07  W. L. Estes  <will@fumblers.org>
+
+	* html2texi.l(a_name,a_href,a_close_brace: new variables to manage
+	<a> element name and href attributes
+	(IMG,ANCHOR): eat any unrecognized text inside the <a> tag by matching
+	regexp .
+	(LINK,META): distinguish between meta in head v. body
+	(in_head,at_html): new variables for outputting @html
+	(LINK,BASE,IMG): new start states
+	(img_src): new variable for <img src=...>
+	(font_style): new definition
+
+	1999-09-06  W. L. Estes  <will@fumblers.org>
+
+	* html2texi.l (TAG,END_TAG): eat unrecognized tags but leave the
+	text of their elements in place...
+	(edible): new definition, for TAG and END_TAG
+	if no particular processing is needed
+	(PHRASE): deleted this start condition
+	(META): new start state
+	(ANCHOR): new start state
+
+	* utils.h: new file
+
+	 * utils.c (strend)
+	 (base_name): new function
+
+ 1999-09-05  W. L. Estes  <will@fumblers.org>
+
+	 * utils.c (convert_extension): new function
+
+	 * html2texi.h: new file
+
+	 * html2texi.l (name_value_pairs):optional white space after 
+	 each pair
+	 (TAG): factor out name_value_pairs match into a separate rule
+	 since most all html can have them; this implies factoring out the
+	 separate calls to yy_pop_state() aws well
+	 (END_TAG): factor out the calls to yy_pop_state()
+	 (single_quoted_value,double_quoted_value): allow newlines
+	 (unquoted_value): new definition
+	(main): handle command line arguments as filenames
+
+ 1999-09-04  W. L. Estes  <will@fumblers.org>
+
+	 * TODO: new file
+	 * autogen.sh: new file
+	 * Makefile.am (EXTRA_DIST): add autogen.sh, test.html, TODO
+
+	 * html2texi.l: use non-INITIAL start states mostly to write texinfo
+	 markup, then pop state since html is nested
+	 (END_TAG): new start state
+	 (COMMENT): exclusive start state
+
+	 * utils.c: new file
+	 (quotation_marks): new function
+
+ 1999-09-02  W. L. Estes  <will@fumblers.org>
+
+	 * html2texi.l(TAG,COMMENT,PHRASE): new start states
+
+	 * html2texi.texi: new file
+
+	 * test.html: new file containing test html to be translated,
+ changed as rules are added to html2texi.l
+
+ 1999-08-29    W. L. Estes <will@fumblers.org>
+
+	 * html2texi.l: new file
+	 *  Makefile.am: new file, drudge up what automake wants
+
+ 
+	 Local Variables:
+	 mode: change-log
+	 compile-command: "make dist"
+	 End:

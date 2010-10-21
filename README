@@ -1,0 +1,21 @@
+This is html2texi, a program to generate texinfo files from html
+documents.
+
+The following files may be of interest:
+
+COPYING	- copying conditions.
+INSTALL	- hints on building and installation.
+NEWS	- a history of user visible changes. 
+TODO	- a list of possible future extensions
+
+The package html2texi is distributed as free software under the terms
+of the GNU General Public License. See the file COPYING for the
+details of this license.
+
+This package is distributed with a manual whose source can be found in
+the file html2texi.texi. A version ready for use with info browsers is
+also distributed.
+
+See the section entitled `distribution' in the manual for details  on
+where to obtain the most recent version of this package and
+information on contacting the author of this package.

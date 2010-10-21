@@ -1,0 +1,213 @@
+\input texinfo @c -*-texinfo-*-
+@setfilename html2texi.info
+@macro HTML
+@acronym{HTML}
+@end macro
+@settitle An @HTML to Texinfo Converter
+@c imho automake should do this in version.texi, but ...
+@set PACKAGE html2texi
+@include version.texi
+@titlepage
+@title @value{PACKAGE}: An @HTML to Texinfo Converter
+@author W. L. Estes
+@vskip 0pt plus 1filll
+This manual was last updated on @value{UPDATED}.
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright 1999 W. L. Estes
+
+@xref{distribution}, for information on where to obtain the official
+@value{PACKAGE} distribution, which includes the source for this manual.
+@xref{permissions}, for copying permissions.
+@vskip 0pt plus 1filll
+@end titlepage
+
+@node top, introduction, (dir), (dir)
+@top @value{PACKAGE}
+
+This manual documents version  @value{VERSION} of html2texi and was last
+updated on @value{UPDATED}.
+
+@menu
+* introduction::                
+* miscellaneous matters::       
+@end menu
+
+@node introduction, miscellaneous matters, top, top
+@chapter introduction
+
+@value{PACKAGE} is intended to make the process of converting @HTML
+documents into texinfo easier than it might otherwise be.
+
+Since it is intended that @value{PACKAGE} will be used to convert
+existing---and therefore functional or correct---@HTML documents,
+@value{PACKAGE} makes no effort to validate or otherwise check the
+syntax of the @HTML input.
+
+Because traditional HTML and texinfo differ substantially in
+their intentions, it is assumed that once a file has been processed by
+@value{PACKAGE}, the processed output will still need to be edited by
+hand. In particular, you may want to pay attention to any unrecognized
+@HTML input because currently unrecognized tags are silently discarded
+from the output.
+
+@menu
+* Converting Documents::        
+* Invoking @value{PACKAGE}::    
+* Expectations::                
+@end menu
+
+@node Converting Documents, Invoking @value{PACKAGE}, introduction, introduction
+@section Converting Documents
+
+This chapter describes how to use @value{PACKAGE} to convert html
+documents and what to expect when you do.
+
+@menu
+* Invoking @value{PACKAGE}::    
+@end menu
+
+@node Invoking @value{PACKAGE}, Expectations, Converting Documents, introduction
+@section Invoking @value{PACKAGE}
+
+To use @code{html2texi} to convert an html file into texinfo, issue the
+command:
+
+@example
+@code{html2texi file.html}
+@end example
+
+You may include additional filenames on the command line and @code{html2texi}
+will convert each of the named files in turn. The pseudo filename
+@file{-} may be used to signify that the standard input should be
+converted. If no file arguments are given on the command line then the
+standard input is read. If standard input is read, then the result of
+processing that particular html is written to standard output.
+
+@node Expectations,  , Invoking @value{PACKAGE}, introduction
+@section Expectations
+
+Here is a list of some matters you might want to consider when using
+@value{PACKAGE}.
+
+@itemize @bullet
+@item
+@value{PACKAGE} will work best with documents that conform to the strict
+@HTML 4.0 specification.
+
+@item
+@code{META} elements are output literally between @code{@@html@dots{}@@end
+html} lines.
+
+@item
+Most attributes are discarded from @HTML elements.
+
+@item
+@value{PACKAGE} tends to output excessive numbers of newlines. This may
+introduce paragraph breaks where none are intended.
+
+@item
+Unrecognized tags are silently discarded although text between a
+@code{<foo>} tag and its matching @code{</foo>} tag is kept since not
+all @HTML tags are required to have closing tags.
+
+@item
+all @code{a} tags with their @code{href} attribute render the reference
+as an @code{@@uref}.
+@end itemize
+
+@node miscellaneous matters,  , introduction, top
+@chapter Miscellaneous Matters
+
+This chapter presents information on a few miscellaneous matters.
+
+@menu
+* extending::                   
+* distribution::                
+* permissions::                 
+@end menu
+
+@node extending, distribution, miscellaneous matters, miscellaneous matters
+@section Extending
+
+The bulk of the work done by @code{html2texi} occurs in a lexical
+scanner. If you want to change or enhance the scanner, you will need
+flex to rebuild the scanner after you have modified it unless you
+rewrite the scanner so that it does not depend on the non-standard
+features that flex provides.
+
+To add the processing of an additional element to @value{PACKAGE}, add
+the following rules:
+
+@table @code
+@item <TAG>element_name action
+
+@code{element_name} is the name of the element being scanned  and @code{action} should generate any
+relevant texinfo markup for the beginning of this element. If it is
+sufficient to generate texinfo markup at the beginning and at the end of
+this element, then action should not change the start condition. There is
+a separate rule which will consume any unscanned @code{name=value} attribute pairs in the
+@HTML input. If the text contained in the element needs special markup
+different from ordinary texinfo markup, or you wish to use the
+name=value attribute pairs to alter the texinfo markup, then you should
+place a call to @code{yy_push_state()} in @code{action}. You will
+probably find it easiest to push into a new exclusive start
+condition. This implies that you will have to be sure to handle all
+expected input and that you should be sure that the new start condition
+will call @code{yy_pop_state()} a sufficient number of times to pop
+through the @code{<TAG>} state that led into reading the tag for which
+you are adding rules. If you do push into a new state, give the new
+state a name which is an upper case version of the start tag for the elment.
+
+@ item <END_TAG>element_name action
+
+If @code{element_name} has an optional or required end tag, then you
+should add a rule of this form. @code{element_name} is the name of the
+element being scanned and @code{action} should generate any relevant
+texinfo markup for the end of this element. Occasionally it is necessary
+to have @code{action} do other work. There is a separate rule which
+handles the scanning of the final @samp{>} of the tag.
+@end table
+
+@node distribution, permissions, extending, miscellaneous matters
+@section Distribution
+
+The @value{PACKAGE} package has a homepage on the world wide web at
+@uref{http://www.uncg.edu/~wlestes/projects/software/html2texi}. That
+page will contain information on how to obtain the package
+itself. You can contact the author of the package by sending mail to
+@email{will@@fumblers.org,W. L. Estes}.
+
+@node permissions,  , distribution, miscellaneous matters
+@section Permissions
+
+@value{PACKAGE} is free software. It is distributed under the terms of
+the @acronym{GNU} General Public License. You should  have received a
+copy of this license in the @file{COPYING} when you obtained the
+@value{PACKAGE} distribution.
+
+Permission is granted to make and distribute verbatim
+copies of this manual provided the copyright notice and
+this permission notice are preserved on all copies.
+
+Permission is granted to copy and distribute modified
+versions of this manual under the conditions for
+verbatim copying, provided also that the sections
+@xref{permissions}, and @xref{distribution},
+are included exactly as in the original, and provided
+that the entire resulting derived work is distributed
+under the terms of a permission notice identical to this
+one.
+
+Permission is granted to copy and distribute
+translations of this manual into another language,
+under the above conditions for modified versions,
+except that this permission notice may be stated in a
+translation approved by the author or copyright holder.
+
+
+@bye
+
+@c Local Variables:
+@c compile-command: "make info"
+@c End:

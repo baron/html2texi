@@ -1,0 +1,64 @@
+TODO list for html2texi: [JMJ]
+
+This file is part of html2texi. See the file COPYING for copying
+conditions.
+
+* portability issues
+
+** strdup, strndup need to be provided if not present
+
+* Presentation issues
+
+** have another go at the manual
+
+** provide more test html and tell automake what to do with it
+
+* Tasks that are required for html2texi to do a reasonably thorough job
+
+** add entity translations
+
+** html tables
+
+** arrange for @alias commands and such at the top of the texinfo
+  output
+
+** make it possible to discard or @ignore or @html or warn about or somehow catch unrecognized html
+
+* Tasks that would be nice if html2texi handled
+
+** write <a href=...> to email and newsgroups as such
+
+** command line options (partially irrelevant since we write to
+   stdout)
+
+*** allow user to specify input_suffix and output_suffix (e.g. .htm
+    and .txi respectively)
+
+*** allow user to specify the directory to which output is written 
+
+*** allow user to specify output filename
+
+*** allow user to specify whether to overwrite existing files
+
+*** --help and --version
+
+*** option for verbosity
+
+** Support numbering control attributes for list elements
+
+** support INS and DEL elements explicitly?
+
+** take into account html version/lang info
+
+** account for block-level versus inline elements
+
+* Miscellaneous comments:
+
+** we output too many newlines, but the block/inline distinction would probably help this
+
+
+Local Variables:
+compile-command: "make dist"
+mode: text
+mode: outline-minor
+End:

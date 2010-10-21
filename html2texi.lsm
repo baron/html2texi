@@ -1,0 +1,14 @@
+Begin3
+Title:          html2texi
+Version:        0.1
+Entered-date:   07SEP98
+Description:    converts html into texinfo.
+Keywords:       texinfo, info, html
+Author:         W. L. Estes <will@fumblers.org>
+Maintained-by:  W. L. Estes <will@fumblers.org>
+Primary-site:   ftp://sunsite.unc.edu/pub/Linux/utils/text/html2texi-0.1.tar.gz
+Alternate-site: 
+Original-site:  http://www.uncg.edu/~wlestes/projects/software/html2texi/
+Platforms:      
+Copying-policy: GPL
+End

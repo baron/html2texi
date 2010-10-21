@@ -1,0 +1,212 @@
+This is html2texi.info, produced by makeinfo version 3.12s from
+html2texi.texi.
+
+
+File: html2texi.info,  Node: Top,  Next: introduction,  Prev: (dir),  Up: (dir)
+
+html2texi
+*********
+
+   This manual documents version  0.1 of html2texi and was last updated
+on 7 September 1999.
+
+* Menu:
+
+* introduction::
+* miscellaneous matters::
+
+
+File: html2texi.info,  Node: introduction,  Next: miscellaneous matters,  Prev: Top,  Up: Top
+
+introduction
+************
+
+   html2texi is intended to make the process of converting HTML
+documents into texinfo easier than it might otherwise be.
+
+   Since it is intended that html2texi will be used to convert
+existing--and therefore functional or correct--HTML documents,
+html2texi makes no effort to validate or otherwise check the syntax of
+the HTML input.
+
+   Because traditional HTML and texinfo differ substantially in their
+intentions, it is assumed that once a file has been processed by
+html2texi, the processed output will still need to be edited by hand.
+In particular, you may want to pay attention to any unrecognized HTML
+input because currently unrecognized tags are silently discarded from
+the output.
+
+* Menu:
+
+* Converting Documents::
+* Invoking html2texi::
+* Expectations::
+
+
+File: html2texi.info,  Node: Converting Documents,  Next: Invoking html2texi,  Prev: introduction,  Up: introduction
+
+Converting Documents
+====================
+
+   This chapter describes how to use html2texi to convert html
+documents and what to expect when you do.
+
+* Menu:
+
+* Invoking html2texi::
+
+
+File: html2texi.info,  Node: Invoking html2texi,  Next: Expectations,  Prev: Converting Documents,  Up: introduction
+
+Invoking html2texi
+==================
+
+   To use `html2texi' to convert an html file into texinfo, issue the
+command:
+
+     `html2texi file.html'
+
+   You may include additional filenames on the command line and
+`html2texi' will convert each of the named files in turn. The pseudo
+filename `-' may be used to signify that the standard input should be
+converted. If no file arguments are given on the command line then the
+standard input is read. If standard input is read, then the result of
+processing that particular html is written to standard output.
+
+
+File: html2texi.info,  Node: Expectations,  Prev: Invoking html2texi,  Up: introduction
+
+Expectations
+============
+
+   Here is a list of some matters you might want to consider when using
+html2texi.
+
+   * html2texi will work best with documents that conform to the strict
+     HTML 4.0 specification.
+
+   * `META' elements are output literally between `@html...@end html'
+     lines.
+
+   * Most attributes are discarded from HTML elements.
+
+   * html2texi tends to output excessive numbers of newlines. This may
+     introduce paragraph breaks where none are intended.
+
+   * Unrecognized tags are silently discarded although text between a
+     `<foo>' tag and its matching `</foo>' tag is kept since not all
+     HTML tags are required to have closing tags.
+
+   * all `a' tags with their `href' attribute render the reference as
+     an `@uref'.
+
+
+File: html2texi.info,  Node: miscellaneous matters,  Prev: introduction,  Up: Top
+
+Miscellaneous Matters
+*********************
+
+   This chapter presents information on a few miscellaneous matters.
+
+* Menu:
+
+* extending::
+* distribution::
+* permissions::
+
+
+File: html2texi.info,  Node: extending,  Next: distribution,  Prev: miscellaneous matters,  Up: miscellaneous matters
+
+Extending
+=========
+
+   The bulk of the work done by `html2texi' occurs in a lexical
+scanner. If you want to change or enhance the scanner, you will need
+flex to rebuild the scanner after you have modified it unless you
+rewrite the scanner so that it does not depend on the non-standard
+features that flex provides.
+
+   To add the processing of an additional element to html2texi, add the
+following rules:
+
+`<TAG>element_name action'
+     `element_name' is the name of the element being scanned  and
+     `action' should generate any relevant texinfo markup for the
+     beginning of this element. If it is sufficient to generate texinfo
+     markup at the beginning and at the end of this element, then
+     action should not change the start condition. There is a separate
+     rule which will consume any unscanned `name=value' attribute pairs
+     in the HTML input. If the text contained in the element needs
+     special markup different from ordinary texinfo markup, or you wish
+     to use the name=value attribute pairs to alter the texinfo markup,
+     then you should place a call to `yy_push_state()' in `action'. You
+     will probably find it easiest to push into a new exclusive start
+     condition. This implies that you will have to be sure to handle all
+     expected input and that you should be sure that the new start
+     condition will call `yy_pop_state()' a sufficient number of times
+     to pop through the `<TAG>' state that led into reading the tag for
+     which you are adding rules. If you do push into a new state, give
+     the new state a name which is an upper case version of the start
+     tag for the elment.
+
+     item <END_TAG>element_name action
+
+     If `element_name' has an optional or required end tag, then you
+     should add a rule of this form. `element_name' is the name of the
+     element being scanned and `action' should generate any relevant
+     texinfo markup for the end of this element. Occasionally it is
+     necessary to have `action' do other work. There is a separate rule
+     which handles the scanning of the final `>' of the tag.
+
+
+File: html2texi.info,  Node: distribution,  Next: permissions,  Prev: extending,  Up: miscellaneous matters
+
+Distribution
+============
+
+   The html2texi package has a homepage on the world wide web at
+`http://www.uncg.edu/~wlestes/projects/software/html2texi'. That page
+will contain information on how to obtain the package itself. You can
+contact the author of the package by sending mail to W. L. Estes
+<will@fumblers.org>.
+
+
+File: html2texi.info,  Node: permissions,  Prev: distribution,  Up: miscellaneous matters
+
+Permissions
+===========
+
+   html2texi is free software. It is distributed under the terms of the
+GNU General Public License. You should  have received a copy of this
+license in the `COPYING' when you obtained the html2texi distribution.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the sections *Note permissions::, and *Note distribution::, are
+included exactly as in the original, and provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the author or copyright holder.
+
+
+
+Tag Table:
+Node: Top81
+Node: introduction332
+Node: Converting Documents1226
+Node: Invoking html2texi1528
+Node: Expectations2203
+Node: miscellaneous matters3053
+Node: extending3310
+Node: distribution5532
+Node: permissions5962
+
+End Tag Table
